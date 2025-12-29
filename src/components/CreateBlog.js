@@ -1,7 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
+import api from "../api"
 
 function CreateBlog() {
   const [title, setTitle] = useState("");
@@ -75,7 +75,7 @@ function CreateBlog() {
         formData.append("video", videoFile);
       }
 
-      await axios.post("/api/blogs", formData, {
+      await api.post("/api/blogs", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -246,4 +246,5 @@ function CreateBlog() {
 }
 
 export default CreateBlog;
+
 
