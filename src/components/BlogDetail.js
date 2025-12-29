@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import DeleteModal from "./DeleteModal";
 import "../index.css";
+import api from "../api.js"
 
 function BlogDetail() {
   const { id } = useParams();
@@ -14,7 +14,7 @@ function BlogDetail() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
+    api
       .get(`/api/blogs/${id}`)
       .then((res) => {
         setBlog(res.data);
@@ -42,7 +42,7 @@ function BlogDetail() {
     setDeleting(true);
     try {
       // Send password as query param for backend verification
-      await axios.delete(`/api/blogs/${id}?password=${encodeURIComponent(password)}`);
+      await api.delete(`/api/blogs/${id}?password=${encodeURIComponent(password)}`);
       navigate("/");
     } catch (err) {
       console.error(err);
@@ -124,4 +124,5 @@ function BlogDetail() {
 }
 
 export default BlogDetail;
+
 
