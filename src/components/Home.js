@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
+import api from "../api";
 
 function Home() {
   const [blogs, setBlogs] = useState([]);
@@ -10,7 +10,7 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
+    api
       .get("/api/blogs")
       .then((res) => {
         console.log("Blogs:", res.data);
@@ -93,4 +93,5 @@ function Home() {
 }
 
 export default Home;
+
 
