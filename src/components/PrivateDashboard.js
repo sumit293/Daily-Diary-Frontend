@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import PrivateCreateBlog from "./PrivateCreateBlog";
 import "../index.css";
+import api from "../api.js"
 
 function PrivateDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -25,7 +26,7 @@ function PrivateDashboard() {
   const fetchPersonalBlogs = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("/api/blogs/personal");
+      const res = await api.get("/api/blogs/personal");
       setBlogs(res.data);
     } catch (err) {
       console.error(err);
@@ -175,4 +176,5 @@ function PrivateDashboard() {
 }
 
 export default PrivateDashboard;
+
 
