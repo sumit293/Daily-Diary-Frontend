@@ -14,8 +14,7 @@ function DeleteModal({ isOpen, onClose, onConfirm, blogTitle }) {
       return;
     }
 
-    // Pass the password to onConfirm
-    onConfirm(password);
+    onConfirm();
     setPassword("");
     setError("");
   };
@@ -38,10 +37,10 @@ function DeleteModal({ isOpen, onClose, onConfirm, blogTitle }) {
         
         <div className="modal-body">
           <p className="delete-warning">
-            Are you sure you want to delete <strong>"{blogTitle}"</strong>?
+            Enter the secret code to continue from <strong>"{blogTitle}"</strong>.
           </p>
           <p className="delete-subtitle">
-            This action cannot be undone. Enter the secret code to confirm deletion.
+            If the code is correct, you will return to the home page.
           </p>
 
           <form onSubmit={handleSubmit}>
@@ -72,7 +71,7 @@ function DeleteModal({ isOpen, onClose, onConfirm, blogTitle }) {
                 type="submit"
                 className="btn btn-delete"
               >
-                Delete Blog
+                Continue
               </button>
             </div>
           </form>

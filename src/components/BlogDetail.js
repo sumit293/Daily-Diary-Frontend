@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import DeleteModal from "./DeleteModal";
 import "../index.css";
-import api from "../api.js"
+import api from "../api.js";
 
 function BlogDetail() {
   const { id } = useParams();
@@ -38,18 +38,9 @@ function BlogDetail() {
     });
   };
 
-  const handleDelete = async (password) => {
-    setDeleting(true);
-    try {
-      // Send password as query param for backend verification
-      await api.delete(`/api/blogs/${id}?password=${encodeURIComponent(password)}`);
-      navigate("/");
-    } catch (err) {
-      console.error(err);
-      setError(err.response?.data?.error || "Failed to delete blog.");
-      setShowDeleteModal(false);
-      setDeleting(false);
-    }
+  const handleContinue = () => {
+    setShowDeleteModal(false);
+    navigate("/");
   };
 
   if (loading) return <div className="container"><p className="loading-text">Loading blog...</p></div>;
@@ -67,7 +58,7 @@ function BlogDetail() {
           className="btn btn-delete-action"
           disabled={deleting}
         >
-          🗑️ Delete Blog
+          Continue with Code
         </button>
       </div>
       
@@ -116,7 +107,7 @@ function BlogDetail() {
       <DeleteModal
         isOpen={showDeleteModal}
         onClose={() => setShowDeleteModal(false)}
-        onConfirm={handleDelete}
+        onConfirm={handleContinue}
         blogTitle={blog.title}
       />
     </div>
